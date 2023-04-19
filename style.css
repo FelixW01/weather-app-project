@@ -1,0 +1,58 @@
+header {
+    background-color: #3C486B;
+    display: flex;
+    justify-content: center;
+}
+.heading-top {
+    color: white;
+    margin: 1.5rem auto;
+}
+#search-container {
+    display: inline-block;
+    width: 35vh;
+    height: 80vh;
+    margin:0 2rem;
+}
+
+#searchForm {
+    display: block;
+}
+#searchForm h1 {
+    margin: .75rem 0;
+}
+
+#cityName {
+    margin: .75rem 0;
+    width: 35vh;
+    height: 50px;
+    border: solid .75px grey;
+    border-radius: 6px;
+}
+
+.searchButton {
+    margin: .75rem 0;
+    padding: 1rem 7rem;
+    width: 35vh
+}
+
+#info-card {
+    display: flex;
+    flex-direction: column;
+    border: solid .75px black;
+    margin: 2rem 0;
+    width: 65%;
+    height: 15vh;
+    font-size: 1.25rem;
+}
+
+#info-card h2 {
+    margin: 15px;
+}
+
+#info-card p {
+    margin: 5px 10px 5px 10px;
+}
+
+.main-container {
+    display: flex;
+}
