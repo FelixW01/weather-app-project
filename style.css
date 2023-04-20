@@ -41,16 +41,18 @@ header {
     border: solid .75px black;
     margin: 2rem 0;
     width: 65%;
-    height: 15vh;
+    height: 20%;
     font-size: 1.25rem;
 }
 
 #info-card h2 {
-    margin: 15px;
+    margin: 10px 15px 5px 15px;
+    display: flex;
 }
 
 #info-card p {
     margin: 5px 10px 5px 10px;
+    display: flex;
 }
 
 .main-container {

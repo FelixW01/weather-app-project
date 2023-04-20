@@ -22,17 +22,21 @@
         <form id="searchForm">
             <h1>Search for a City: </h1>
             <input type="text" id="cityName">
-            <button class="btn btn-primary searchButton" type="submit">Search</button>
+            <button id="searchBtn" class="btn btn-primary searchButton" type="submit">Search</button>
         </form>
         <hr> 
         
     </aside>
     <div id="info-card">
-        <h2>Atlanta</h2>
-        <p>Temp: </p>
-        <p>Wind: </p>
-        <p>Humidity: </p>
+        <h2 id="info-city"></h2>
+        <p id="info-tmp">Temp: </p>
+        <p id="info-wind">Wind: </p>
+        <p id="info-humid">Humidity: </p>
     </div>
+
+    <section id="5-day-forecast">
+
+    </section>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="script.js"></script>
