@@ -40,7 +40,7 @@ header {
     flex-direction: column;
     border: solid .75px black;
     margin: 2rem 0;
-    width: 65%;
+    width: 65vw;
     height: 20%;
     font-size: 1.25rem;
 }
@@ -56,5 +56,10 @@ header {
 }
 
 .main-container {
-    display: flex;
+    display: inline-flex;
+    flex-direction: row;
+}
+
+#forecastCards {
+    background-color: #7C96AB;
 }

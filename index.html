@@ -17,16 +17,17 @@
     <header>
         <h1 class="heading-top">Weather Dashboard</h1>
     </header>
+    
     <section class="main-container">
-    <aside id="search-container">
-        <form id="searchForm">
+     <aside id="search-container">
+         <form id="searchForm">
             <h1>Search for a City: </h1>
             <input type="text" id="cityName">
             <button id="searchBtn" class="btn btn-primary searchButton" type="submit">Search</button>
-        </form>
-        <hr> 
-        
-    </aside>
+         </form>
+         <hr> 
+     </aside>
+
     <div id="info-card">
         <h2 id="info-city"></h2>
         <p id="info-tmp">Temp: </p>
@@ -35,8 +36,16 @@
     </div>
 
     <section id="5-day-forecast">
-
+        <h1 class="forecast-h1">5-Day Forecast: </h1>
+        <section id="forecastCards">
+            <div>
+                <h3>9/14/2022</h3>
+                <p>temp: </p>
+                <p>wind: </p>
+                <p>humidity: </p>
+            </div>
     </section>
+
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="script.js"></script>

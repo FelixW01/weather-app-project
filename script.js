@@ -29,7 +29,11 @@ function getForecastApi(city) {
     })
     .then(function(data) {
         console.log(data);
-        console.log(data.list[1])
+        console.log(data.list[0]);
+        console.log(data.list[8]);
+        console.log(data.list[16]);
+        console.log(data.list[24]);
+        console.log(data.list[32]);
         // get the array of the days u need
         //function card
     })
@@ -54,6 +58,7 @@ searchBtn.on('click', function(event) {
 });
 
 function createCards() {
+
     //change info-card content
     //make the 5-day-forecast cards and parse the info from the api
 }
