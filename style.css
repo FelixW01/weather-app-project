@@ -41,7 +41,7 @@ header {
     border: solid .75px black;
     margin: 2rem 0;
     width: 65vw;
-    height: 20%;
+    height: 30%;
     font-size: 1.25rem;
 }
 
@@ -61,5 +61,14 @@ header {
 }
 
 #forecastCards {
+    display: inline-block;
     background-color: #7C96AB;
+}
+
+#forecastCards h3 {
+    margin: 10px;
+}
+
+#forecastCards p {
+    margin: 10px;
 }
