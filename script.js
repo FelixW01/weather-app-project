@@ -9,7 +9,7 @@ var currentWeatherUrl;
 var forecastWeatherUrl;
 
 function getApi(city) {
-    var currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=d20404bf94b627d60e0102bffa537c06`
+    var currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=d20404bf94b627d60e0102bffa537c06`;
     fetch(currentWeatherUrl)
      .then(function (response) {
         console.log(response.status);
@@ -21,16 +21,17 @@ function getApi(city) {
         passData(data);
      });
 }
+// `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=d20404bf94b627d60e0102bffa537c06`
+
 function getForecastApi(city) {
-    var forecastWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=d20404bf94b627d60e0102bffa537c06`;
+    var forecastWeatherUrl = `api.openweathermap.org/data/2.5/forecast/daily?q=${city}&units=imperial&cnt=5&appid=d20404bf94b627d60e0102bffa537c06`;
     fetch(forecastWeatherUrl)
     .then(function(response) {
         console.log(response.status + "<<<<forecast");
         return response.json()
     })
     .then(function(data) {
-        console.log(data.list.filter(createCards));
-        // console.log(data)
+        console.log(data + "<<<<<<<<<<<<<<<Forecast Data")
         // console.log(data.list[0]);
         // console.log(data.list[0].main.temp);
         // console.log(data.list[0].wind.speed);
