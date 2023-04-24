@@ -6,6 +6,7 @@ var infoHmd = $('#info-humid');
 var searchInput = document.querySelector('#cityName');
 var cityName;
 var currentWeatherUrl;
+var forecastWeatherUrl;
 
 function getApi(city) {
     var currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=d20404bf94b627d60e0102bffa537c06`
@@ -28,12 +29,16 @@ function getForecastApi(city) {
         return response.json()
     })
     .then(function(data) {
-        console.log(data);
-        console.log(data.list[0]);
-        console.log(data.list[8]);
-        console.log(data.list[16]);
-        console.log(data.list[24]);
-        console.log(data.list[32]);
+        console.log(data.list.filter(createCards));
+        // console.log(data)
+        // console.log(data.list[0]);
+        // console.log(data.list[0].main.temp);
+        // console.log(data.list[0].wind.speed);
+        // console.log(data.list[0].main.humidity);
+        // console.log(data.list[8]);
+        // console.log(data.list[16]);
+        // console.log(data.list[24]);
+        // console.log(data.list[32]);
         // get the array of the days u need
         //function card
     })
@@ -58,7 +63,10 @@ searchBtn.on('click', function(event) {
 });
 
 function createCards() {
-
+    for (let i = 0; i < data.list.length; i + 8) {
+        console.log(data.list[i] + "<<<<<<<<<<<")
+    }
+    
     //change info-card content
     //make the 5-day-forecast cards and parse the info from the api
 }
