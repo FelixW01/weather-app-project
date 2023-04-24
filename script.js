@@ -28,6 +28,9 @@ function getForecastApi(city) {
         return response.json()
     })
     .then(function(data) {
+        // for (var i = 0; i < data.list.length; i + 8) {
+        //     console.log(data.list[i] + "<<<<<<<<Data list");
+        // }
         console.log(data)
         console.log(data.list[0]);
         console.log(data.list[0].main.temp);
