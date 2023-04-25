@@ -38,7 +38,7 @@ function getForecastApi(city) {
             var pEl3 = document.createElement('p');
             h3El.textContent = data.list[i].dt_txt;
             imgEl.setAttribute('src', 'http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png')
-            pEl.textContent = 'Temp: ' + data.list[i].main.temp + "F";
+            pEl.textContent = 'Temp: ' + data.list[i].main.temp + "°F";
             pEl2.textContent = 'Wind: ' + data.list[i].wind.speed + "mph";
             pEl3.textContent = 'Humidity: ' + data.list[i].main.humidity;
             forecast.append(divEl)
@@ -54,8 +54,8 @@ function getForecastApi(city) {
 
 function passData(data) {
     infoCity.text(data.name);
-    infoTmp.text('Temperature: ' + data.main.temp + 'F');
-    infoWind.text('Wind: ' + data.wind.speed + 'MPH')
+    infoTmp.text('Temperature: ' + data.main.temp + '°F');
+    infoWind.text('Wind: ' + data.wind.speed + 'mph')
     infoHmd.text('Humidity: '+ data.main.humidity);
 }
 
