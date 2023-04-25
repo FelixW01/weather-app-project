@@ -3,6 +3,7 @@ var infoCity = $('#info-city');
 var infoTmp = $('#info-tmp');
 var infoWind = $('#info-wind');
 var infoHmd = $('#info-humid');
+var forecast = $('#forecastCards');
 var searchInput = document.querySelector('#cityName');
 var cityName;
 var currentWeatherUrl;
@@ -21,27 +22,33 @@ function getApi(city) {
      });
 }
 function getForecastApi(city) {
-    var forecastWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=d20404bf94b627d60e0102bffa537c06`;
+    var forecastWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=d20404bf94b627d60e0102bffa537c06`;
     fetch(forecastWeatherUrl)
     .then(function(response) {
         console.log(response.status + "<<<<forecast");
         return response.json()
     })
     .then(function(data) {
-        // for (var i = 0; i < data.list.length; i + 8) {
-        //     console.log(data.list[i] + "<<<<<<<<Data list");
-        // }
+        for (var i = 1; i < data.list.length; i=i + 8) {
+            var divEl = document.createElement("div");
+            var imgEl = document.createElement('img');
+            var h3El = document.createElement('h3');
+            var pEl = document.createElement('p');
+            var pEl2 = document.createElement('p');
+            var pEl3 = document.createElement('p');
+            h3El.textContent = data.list[i].dt_txt;
+            imgEl.setAttribute('src', 'http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png')
+            pEl.textContent = 'Temp: ' + data.list[i].main.temp + "F";
+            pEl2.textContent = 'Wind: ' + data.list[i].wind.speed + "mph";
+            pEl3.textContent = 'Humidity: ' + data.list[i].main.humidity;
+            forecast.append(divEl)
+            divEl.append(h3El)
+            divEl.append(imgEl)
+            divEl.append(pEl)
+            divEl.append(pEl2)
+            divEl.append(pEl3)
+        }
         console.log(data)
-        console.log(data.list[0]);
-        console.log(data.list[0].main.temp);
-        console.log(data.list[0].wind.speed);
-        console.log(data.list[0].main.humidity);
-        // console.log(data.list[8]);
-        // console.log(data.list[16]);
-        // console.log(data.list[24]);
-        // console.log(data.list[32]);
-        // get the array of the days u need
-        //function card
     })
 }
 

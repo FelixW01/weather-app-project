@@ -59,16 +59,27 @@ header {
     display: inline-flex;
     flex-direction: row;
 }
-
+/* #five-day-forecast {
+    display: flex;
+    flex-direction: row;
+} */
 #forecastCards {
     display: inline-block;
-    background-color: #7C96AB;
-}
+    
 
+}
+#forecastCards div {
+    display: inline-block;
+    background-color: #B9EDDD;
+    border: solid black 2px;
+    margin: 20px;
+
+}
 #forecastCards h3 {
     margin: 10px;
 }
 
 #forecastCards p {
     margin: 10px;
+    font-size: 1.5rem;
 }
