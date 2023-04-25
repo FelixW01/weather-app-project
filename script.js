@@ -71,20 +71,38 @@ searchBtn.on('click', function(event) {
     //use localStorage to create n append buttons as history
 });
 
+
+let historyStorage = localStorage.getItem('cityHistory');
+let cityHistory;
+
+if(historyStorage !== null) {
+    displayButtons();
+}
+console.log(cityHistory);
+
 function createButtons() {
-    let historyStorage = localStorage.getItem('cityHistory');
-    const cityHistory = JSON.parse(historyStorage);
-    console.log(historyStorage)
-    console.log(cityHistory)
-    for (let i = 0; i < cityHistory.length; i++) {
-    var historyButton = document.createElement('button');
-    historyButton.setAttribute('id', 'historyBtn');
-    historyButton.classList.add('searchButton', 'btn', 'btn-primary');
-    historyButton.textContent = cityHistory[i];
-    form.append(historyButton);
+
+    if(historyStorage === null) {
+        cityHistory = [];
+    } else {
+        cityHistory = JSON.parse(historyStorage);;
     }
-    localStorage.setItem('cityHistory', JSON.stringify(cityName));
+
+    cityHistory.push(searchInput.value);
+    localStorage.setItem('cityHistory', JSON.stringify(cityHistory));
+
+    displayButtons();
 }
 
+function displayButtons() {
+    
+    for (let i = 0; i < cityHistory.length; i++) {
+        var historyButton = document.createElement('button');
+        historyButton.setAttribute('id', 'historyBtn');
+        historyButton.classList.add('searchButton', 'btn', 'btn-primary');
+        historyButton.textContent = cityHistory[i];
+        form.append(historyButton);
+        }
+}
 //probably another event listener on the search history that links
 //to the createCards function.
