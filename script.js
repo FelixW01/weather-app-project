@@ -5,6 +5,7 @@ var infoWind = $('#info-wind');
 var infoHmd = $('#info-humid');
 var forecast = $('#forecastCards');
 var searchInput = document.querySelector('#cityName');
+var form = $('#searchForm');
 var cityName;
 var currentWeatherUrl;
 
@@ -63,17 +64,26 @@ searchBtn.on('click', function(event) {
     event.preventDefault();
     cityName = searchInput.value.trim();
     console.log(cityName);
-    console.log("Searched");
     getApi(cityName);
     getForecastApi(cityName);
+    createButtons();
     //gets current, future conditions of the city thru weathermap api
     //use localStorage to create n append buttons as history
 });
 
-function createCards() {
-
-    //change info-card content
-    //make the 5-day-forecast cards and parse the info from the api
+function createButtons() {
+    let historyStorage = localStorage.getItem('cityHistory');
+    const cityHistory = JSON.parse(historyStorage);
+    console.log(historyStorage)
+    console.log(cityHistory)
+    for (let i = 0; i < cityHistory.length; i++) {
+    var historyButton = document.createElement('button');
+    historyButton.setAttribute('id', 'historyBtn');
+    historyButton.classList.add('searchButton', 'btn', 'btn-primary');
+    historyButton.textContent = cityHistory[i];
+    form.append(historyButton);
+    }
+    localStorage.setItem('cityHistory', JSON.stringify(cityName));
 }
 
 //probably another event listener on the search history that links
