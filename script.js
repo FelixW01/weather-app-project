@@ -6,30 +6,33 @@ var infoHmd = $('#info-humid');
 var forecast = $('#forecastCards');
 var searchInput = document.querySelector('#cityName');
 var form = $('#searchForm');
+var historyDiv = $('#historyDiv');
+var infoImg = $('#infoImg');
 var cityName;
 var currentWeatherUrl;
 
+//gets info from weathermap api currentweather
 function getApi(city) {
     var currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=d20404bf94b627d60e0102bffa537c06`
     fetch(currentWeatherUrl)
      .then(function (response) {
-        console.log(response.status);
         return response.json();
      })
      .then(function(data) {
-        console.log(data);
-        console.log(data.name);
         passData(data);
+        console.log(data)
      });
 }
+//gets info from weathermap api forecast
 function getForecastApi(city) {
     var forecastWeatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=d20404bf94b627d60e0102bffa537c06`;
+    forecast.html("");
     fetch(forecastWeatherUrl)
     .then(function(response) {
-        console.log(response.status + "<<<<forecast");
         return response.json()
     })
     .then(function(data) {
+        //creates the forecast cards
         for (var i = 1; i < data.list.length; i=i + 8) {
             var divEl = document.createElement("div");
             var imgEl = document.createElement('img');
@@ -37,7 +40,7 @@ function getForecastApi(city) {
             var pEl = document.createElement('p');
             var pEl2 = document.createElement('p');
             var pEl3 = document.createElement('p');
-            h3El.textContent = data.list[i].dt_txt;
+            h3El.textContent = dayjs(data.list[i].dt_txt).format('MM/DD/YYYY');
             imgEl.setAttribute('src', 'http://openweathermap.org/img/w/' + data.list[i].weather[0].icon + '.png')
             pEl.textContent = 'Temp: ' + data.list[i].main.temp + "°F";
             pEl2.textContent = 'Wind: ' + data.list[i].wind.speed + "mph";
@@ -52,57 +55,56 @@ function getForecastApi(city) {
         console.log(data)
     })
 }
-
+//passes the data for the currentforecast
 function passData(data) {
-    infoCity.text(data.name);
+    infoCity.text(data.name + " " + dayjs.unix(data.dt).format('MM/DD/YYYY'));
+    // infoImg.setAttribute('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png')
     infoTmp.text('Temperature: ' + data.main.temp + '°F');
     infoWind.text('Wind: ' + data.wind.speed + 'mph')
     infoHmd.text('Humidity: '+ data.main.humidity);
 }
 
+//search button event listener and runs the functions
 searchBtn.on('click', function(event) {
     event.preventDefault();
     cityName = searchInput.value.trim();
-    console.log(cityName);
     getApi(cityName);
     getForecastApi(cityName);
     createButtons();
-    //gets current, future conditions of the city thru weathermap api
-    //use localStorage to create n append buttons as history
 });
 
 
-let historyStorage = localStorage.getItem('cityHistory');
-let cityHistory;
-
-if(historyStorage !== null) {
-    displayButtons();
-}
-console.log(cityHistory);
-
+//sets info to localstorage
 function createButtons() {
 
-    if(historyStorage === null) {
-        cityHistory = [];
-    } else {
-        cityHistory = JSON.parse(historyStorage);;
-    }
+   let cityHistory = JSON.parse(localStorage.getItem('cityHistory')) || [];
 
     cityHistory.push(searchInput.value);
     localStorage.setItem('cityHistory', JSON.stringify(cityHistory));
-
+    
     displayButtons();
 }
 
+// gets info from localstorage and creating forecast cards
 function displayButtons() {
-    
-    for (let i = 0; i < cityHistory.length; i++) {
-        var historyButton = document.createElement('button');
-        historyButton.setAttribute('id', 'historyBtn');
-        historyButton.classList.add('searchButton', 'btn', 'btn-primary');
-        historyButton.textContent = cityHistory[i];
-        form.append(historyButton);
-        }
+    let cityHistory = JSON.parse(localStorage.getItem('cityHistory'));
+
+    historyDiv.html("");
+    if(cityHistory) {
+        for (let i = 0; i < cityHistory.length; i++) {
+            var historyButton = document.createElement('button');
+            historyButton.setAttribute('id', 'historyBtn');
+            historyButton.classList.add('searchButton', 'btn', 'btn-secondary');
+            historyButton.addEventListener('click', function(){
+                getApi(cityHistory[i]);
+                getForecastApi(cityHistory[i]);
+            });
+
+            historyButton.textContent = cityHistory[i];
+            historyDiv.append(historyButton);
+            };
+    }
 }
-//probably another event listener on the search history that links
-//to the createCards function.
+
+//calling the function so data persists
+displayButtons()

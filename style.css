@@ -80,3 +80,9 @@ header {
     margin: 10px;
     font-size: 1.5rem;
 }
+
+#historyBtn {
+    margin: .75rem 0;
+    padding: 1rem 7rem;
+    width: 35vh;
+}

@@ -27,9 +27,10 @@
             <input type="text" id="cityName">
             <button id="searchBtn" class="btn btn-primary search-button" type="submit">Search</button>
             <hr> 
-            
          </form>
-         
+        <div id="historyDiv">
+
+        </div>         
          
      </aside>
     </section>
@@ -37,7 +38,7 @@
     <section class="info-container">
     <div id="info-card">
         <h2 id="info-city"></h2>
-        <p id="info-tmp">Temp: </p>
+        <p id="info-tmp">Temp: </p> <img id="infoImg" src="" alt="">
         <p id="info-wind">Wind: </p>
         <p id="info-humid">Humidity: </p>
     </div>
@@ -50,5 +51,10 @@
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="script.js"></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
+    integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
+    crossorigin="anonymous"
+    ></script>
 </body>
 </html>
