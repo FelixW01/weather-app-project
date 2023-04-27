@@ -20,7 +20,6 @@ function getApi(city) {
      })
      .then(function(data) {
         passData(data);
-        console.log(data)
      });
 }
 //gets info from weathermap api forecast
@@ -45,19 +44,21 @@ function getForecastApi(city) {
             pEl.textContent = 'Temp: ' + data.list[i].main.temp + "°F";
             pEl2.textContent = 'Wind: ' + data.list[i].wind.speed + "mph";
             pEl3.textContent = 'Humidity: ' + data.list[i].main.humidity;
-            forecast.append(divEl)
-            divEl.append(h3El)
-            divEl.append(imgEl)
-            divEl.append(pEl)
-            divEl.append(pEl2)
-            divEl.append(pEl3)
+            forecast.append(divEl);
+            divEl.append(h3El);
+            divEl.append(imgEl);
+            divEl.append(pEl);
+            divEl.append(pEl2);
+            divEl.append(pEl3);
         }
-        console.log(data)
     })
 }
 //passes the data for the currentforecast
 function passData(data) {
+    var imgEl2 = document.createElement('img')
+    imgEl2.setAttribute('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png');
     infoCity.text(data.name + " " + dayjs.unix(data.dt).format('MM/DD/YYYY'));
+    infoCity.append(imgEl2);
     infoTmp.text('Temperature: ' + data.main.temp + '°F');
     infoWind.text('Wind: ' + data.wind.speed + 'mph')
     infoHmd.text('Humidity: '+ data.main.humidity);
