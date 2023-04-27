@@ -58,7 +58,6 @@ function getForecastApi(city) {
 //passes the data for the currentforecast
 function passData(data) {
     infoCity.text(data.name + " " + dayjs.unix(data.dt).format('MM/DD/YYYY'));
-    // infoImg.setAttribute('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png')
     infoTmp.text('Temperature: ' + data.main.temp + '°F');
     infoWind.text('Wind: ' + data.wind.speed + 'mph')
     infoHmd.text('Humidity: '+ data.main.humidity);
